@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Listado de Países</title>
+</head>
+<body>
+    <h1>Listado de Países ({{ numero_paises }})</h1>
+    <a href="{% url 'crear_pais' %}">Agregar nuevo país</a>
+    <table border="1">
+        <tr>
+            <th>Nombre</th>
+            <th>Capital</th>
+            <th>Provincias</th>
+            <th>Habitantes</th>
+        </tr>
+        {% for pais in paises %}
+        <tr>
+            <td>{{ pais.nombre }}</td>
+            <td>{{ pais.capital }}</td>
+            <td>{{ pais.num_provincias }}</td>
+            <td>{{ pais.num_habitantes }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+</body>
+</html>
+

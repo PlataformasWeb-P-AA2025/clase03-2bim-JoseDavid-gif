@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Crear País</title>
+</head>
+<body>
+    <h1>Agregar un nuevo país</h1>
+    <form method="POST">
+        {% csrf_token %}
+        {{ formulario.as_p }}
+        <input type="submit" value="Guardar">
+    </form>
+    <a href="{% url 'listar_paises' %}">Volver al listado</a>
+</body>
+</html>
