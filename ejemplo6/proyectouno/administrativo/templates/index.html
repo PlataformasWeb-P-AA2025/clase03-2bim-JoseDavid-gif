@@ -1,33 +1,31 @@
-<h1>{{mititulo}}</h1>
+<h1>Listado de estudiantes</h1>
 <hr>
-<h3>Número de Matriculas {{ numero_matriculas }}</h3>
-<hr>
-[<a href="{% url 'crear_matricula' %}">nuevo</a>]
-<hr>
+<h3>Numero de estudiantes</h3>
+
 <table border="1px">
   <tr>
-    <th><b>Estudiante</b></th>
-    <th><b>Módulo</b></th>
-    <th><b>Comentario</b></th>
-    <th><b>Opciones</b></th>
-  </tr>
-  {% for e in matriculas %}
+    <th><b>Nombre</b></th>
+    <th><b>Apelido</b></th>
+    <th><b>Tipo</b></th>
+    <th><b>Edad</b></th>
+    <th><b>Matriculas</b></th>
+
+    </tr>
+  {% for est in estudiantes %}
   <tr>
+    <td>{{ est.nombre }}</td>
+    <td>{{ est.apellido }}</td>
+    <td>{{ est.get_tipo_estudiante_display }}</td>
+    <td>{{ est.edad }}</td>
     <td>
-      {{e.estudiante.nombre}}
-      [<a href="{% url 'detalle_estudiante' e.estudiante.id %}">+</a>]
-    </td>
-    <td>
-      {{e.modulo.nombre}}
-    </td>
-    <td>
-      {{e.comentario}}
-    </td>
-    <td>
-      [<a href="{% url 'detalle_matricula' e.id %}">ver</a>]
-      [<a href="{% url 'editar_matricula' e.id %}">editar</a>]
+      <ul>
+        {% for mat in est.obtener_matriculas %}
+        <li>{{ mat.modulo.nombre }}: {{ mat.comentario }}</li>
+        {% empty %}
+        <li>Sin matrículas</li>
+        {% endfor %}
+      </ul>
     </td>
   </tr>
   {% endfor %}
-
 </table>
